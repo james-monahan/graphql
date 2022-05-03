@@ -1,1 +1,5 @@
 npm i express graphql apollo-server apollo-server-express
+
+http://localhost:3000/graphql
+
+user: (parent, args, context, info)
