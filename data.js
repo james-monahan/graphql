@@ -1,12 +1,15 @@
 let users = [{
     id: 1,
-    name: 'James'
+    name: 'James',
+    cars: [1, 2]
 }, {
     id: 2,
-    name: 'Jim'
+    name: 'Jim',
+    cars: []
 }, {
     id: 3,
-    name: 'Jamie'
+    name: 'Jamie',
+    cars: [3]
 }];
 
 let cars = [{
@@ -20,7 +23,7 @@ let cars = [{
     make: 'Faraday',
     model: 'FF 91',
     color: 'red',
-    ownedBy: 2
+    ownedBy: 1
 }, {
     id: 3,
     make: 'Lucid',
