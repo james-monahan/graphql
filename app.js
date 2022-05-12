@@ -1,7 +1,7 @@
 //section 3 challenge
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
-const users = require('./data').users;
+let users = require('./data').users;
 const cars = require('./data').cars;
 const me = users[0];
 const typeDefs = gql`
@@ -13,6 +13,10 @@ const typeDefs = gql`
         car(id: Int!): Car
     }
 
+    type Mutation {
+        makeUser(id: Int!, name: String!): User!
+        removeUser(id: Int!): Boolean
+    }
     type User {
         id: ID!
         name: String!
@@ -40,6 +44,31 @@ const resolvers = {
         car: (parent, { id }) => {
             const user = cars.filter(car => car.id === id);
             return cars[0];
+        }
+    },
+    Mutation: {
+        makeUser: (parent, { id, name }) => {
+            const user = {
+                id,
+                name
+            };
+            users.push(user);
+            return user;
+        },
+        removeUser: (parent, { id }) => {
+            let found = false;
+            users = users.filter(user => {
+                if (user.id === id) {
+                    found = true;
+                } else {
+                    return user;
+                }
+            });
+            if (found) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
     Car: {
